@@ -1,0 +1,7 @@
+## Trademarks
+
+trademarks
+
+#### License
+
+MIT

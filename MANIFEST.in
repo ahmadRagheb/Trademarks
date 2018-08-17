@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include trademarks *.css
+recursive-include trademarks *.csv
+recursive-include trademarks *.html
+recursive-include trademarks *.ico
+recursive-include trademarks *.js
+recursive-include trademarks *.json
+recursive-include trademarks *.md
+recursive-include trademarks *.png
+recursive-include trademarks *.py
+recursive-include trademarks *.svg
+recursive-include trademarks *.txt
+recursive-exclude trademarks *.pyc
