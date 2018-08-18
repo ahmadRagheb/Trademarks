@@ -186,24 +186,24 @@ class Trademark(Document):
 
 
 	def update_percent_complete(self):
-		total = frappe.db.sql("""select count(name) from `tabTrademark Task` where trademark_project=%s""", self.name)[0][0]
+		total = frappe.db.sql("""select count(name) from `tabTask` where trademark_project=%s""", self.name)[0][0]
 		if not total and self.percent_complete:
 			self.percent_complete = 0
 		if (self.percent_complete_method == "Task Completion" and total > 0) or (not self.percent_complete_method and total > 0):
-			completed = frappe.db.sql("""select count(name) from `tabTrademark Task` where
+			completed = frappe.db.sql("""select count(name) from `tabTask` where
 				trademark_project=%s and status in ('Closed', 'Cancelled')""", self.name)[0][0]
 			self.percent_complete = flt(flt(completed) / total * 100, 2)
 
 		if (self.percent_complete_method == "Task Progress" and total > 0):
-			progress = frappe.db.sql("""select sum(progress) from `tabTrademark Task` where
+			progress = frappe.db.sql("""select sum(progress) from `tabTask` where
 				trademark_project=%s""", self.name)[0][0]
 			self.percent_complete = flt(flt(progress) / total, 2)
 
 		if (self.percent_complete_method == "Task Weight" and total > 0):
-			weight_sum = frappe.db.sql("""select sum(task_weight) from `tabTrademark Task` where
+			weight_sum = frappe.db.sql("""select sum(task_weight) from `tabTask` where
 				trademark_project=%s""", self.name)[0][0]
 			if weight_sum == 1:
-				weighted_progress = frappe.db.sql("""select progress,task_weight from `tabTrademark Task` where
+				weighted_progress = frappe.db.sql("""select progress,task_weight from `tabTask` where
 					trademark_project=%s""", self.name,as_dict=1)
 				pct_complete=0
 				for row in weighted_progress:
