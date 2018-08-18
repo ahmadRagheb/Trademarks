@@ -107,7 +107,7 @@ class Trademark(Document):
 		for d in custom_fields:
 			fields.append(d.fieldname)
 
-		for d in frappe.get_all('Trademark Project Task',
+		for d in frappe.get_all('Project Task',
 			fields = fields,
 			filters = {'parent': self.name}):
 			existing_task_data.setdefault(d.task_id, d)
@@ -167,7 +167,7 @@ class Trademark(Document):
 				return True
 
 	def map_custom_fields(self, source, target):
-		project_task_custom_fields = frappe.get_all("Custom Field", {"dt": "Trademark Project Task"}, "fieldname")
+		project_task_custom_fields = frappe.get_all("Custom Field", {"dt": "Project Task"}, "fieldname")
 
 		for field in project_task_custom_fields:
 			target.update({
