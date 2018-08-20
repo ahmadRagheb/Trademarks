@@ -33,7 +33,7 @@ frappe.ui.form.on("Trademark", {
 
 		frm.set_query("user", "users", function() {
 			return {
-				query:"trademarks.trademarks.doctype.trademark.trademarks.get_users_for_project"
+				query:"trademarks.trademarks.doctype.trademark.trademark.get_users_for_project"
 			}
 		});
 
